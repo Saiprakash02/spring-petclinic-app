@@ -53,7 +53,7 @@ pipeline {
             steps {
                 script {
                     timeout(time: 60, unit: 'MINUTES') {
-                        dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'DP', failOnHigh: true
+                        dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'DP'
                         dependencyCheckPublisher pattern: 'dependency-check-report.xml', failOnHighSeverity: true, unstableOnHighSeverity: false
                     }
                 }
