@@ -53,8 +53,8 @@ pipeline {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     timeout(time: 60, unit: 'MINUTES') {
-                        dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'DP'
-                        dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+                        dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'DP', failOnHigh: true
+                        dependencyCheckPublisher pattern: 'dependency-check-report.xml', failOnHighSeverity: true, unstableOnHighSeverity: false
                     }
                 }
             }
