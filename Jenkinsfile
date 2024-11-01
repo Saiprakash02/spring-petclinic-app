@@ -51,7 +51,7 @@ pipeline {
 
         stage('OWASP Dependency Check') {
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                script {
                     timeout(time: 60, unit: 'MINUTES') {
                         dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'DP', failOnHigh: true
                         dependencyCheckPublisher pattern: 'dependency-check-report.xml', failOnHighSeverity: true, unstableOnHighSeverity: false
